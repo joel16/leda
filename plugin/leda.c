@@ -104,6 +104,7 @@ s32 sceKernelLinkLibraryEntriesWithModule(SceModule *mod, SceStubLibraryEntryTab
 u32 sctrlHENFindFunction(char *modname, char *libname, u32 nid);
 extern u32 sceKernelQuerySystemCall(void *func);
 
+// Subroutine sub_000000F0 - Address 0x000000F0
 s32 sub_000000F0(s32 *arg) {
     s32 ret = 1;
     
@@ -118,6 +119,7 @@ s32 sub_000000F0(s32 *arg) {
     return ret;
 }
 
+// Subroutine module_start - Address 0x00000130 - loc_00000164
 void loc_00000164(void) {
     kuKernelLoadModule(NULL, 0, NULL);
     kuKernelLoadModuleWithApitype2(0, NULL, 0, NULL);
@@ -131,6 +133,7 @@ void loc_00000164(void) {
     return;
 }
 
+// Subroutine sub_000001FC - Address 0x000001FC
 SceOff sub_000001FC(SceUID fd, SceOff offset, s32 whence) {
     g_pos = sceIoLseek(fd, offset, whence);
     
@@ -143,6 +146,7 @@ SceOff sub_000001FC(SceUID fd, SceOff offset, s32 whence) {
     return g_pos;
 }
 
+// Subroutine sub_00000968 - Address 0x00000968
 s32 sub_00000968(SceCtrlData *pad_data, s32 count) {
     s32 k1 = pspSdkSetK1(0);
     s32 ret = sceCtrlPeekBufferPositive(pad_data, count);
@@ -150,18 +154,21 @@ s32 sub_00000968(SceCtrlData *pad_data, s32 count) {
     return ret;
 }
 
+// Subroutine sub_000009C4 - Address 0x000009C4
 void sub_000009C4(void) {
     s32 k1 = pspSdkSetK1(0);
     sceKernelIcacheInvalidateAll();
     pspSdkSetK1(k1);
 }
 
+// Subroutine sub_000009FC - Address 0x000009FC
 void sub_000009FC(s32 level, s32 unk) {
     s32 k1 = pspSdkSetK1(0);
     sceDisplaySetBrightness(level, unk);
     pspSdkSetK1(k1);
 }
 
+// Subroutine sub_00000A54 - Address 0x00000A54
 s32 sub_00000A54(s32 SceLED, s32 state) {
     s32 k1 = pspSdkSetK1 (0);
     s32 ret = sceSysconCtrlLED(SceLED, state);
@@ -169,6 +176,7 @@ s32 sub_00000A54(s32 SceLED, s32 state) {
     return ret;
 }
 
+// Subroutine sub_00000AB8 - Address 0x00000AB8
 s32 sub_00000AB8(char *modname, char *libname, u32 nid) {
     s32 ret = 0;
     
@@ -185,14 +193,13 @@ s32 sub_00000AB8(char *modname, char *libname, u32 nid) {
     return ret;
 }
 
-/**
- * Subroutine at address 0x00000CCC
- */
+// Subroutine sub_00000CCC - Address 0x00000CCC
 void sub_00000CCC(void) {
     sceKernelDcacheWritebackAll();
     sceKernelIcacheClearAll();
 }
 
+// Subroutine sub_00002ACC - Address 0x00002ACC
 s32 sub_00002ACC(s32 arg, void *address, u32 size) {
     // LoadCoreForKernel_C0913394 was used without any args in the original leda plugin
     s32 ret = sceKernelLinkLibraryEntriesWithModule(NULL, NULL, 0);
@@ -212,11 +219,12 @@ s32 sub_00003304(const char *path, s32 flags, SceKernelLMOption *option) {
     return 0;
 }
 
+// Subroutine sub_00000A54 - Address 0x00000A54 - loc_00000AB0
 s32 loc_00000AB0(struct SceKernelLoadExecVSHParam *param) {
     return sceKernelExitVSHKernel(NULL);
 }
 
-
+// Subroutine module_start - Address 0x00000130
 s32 module_start(SceSize args, void *argp) {
     s32 api_type = sceKernelInitApitype();
     
@@ -229,6 +237,7 @@ s32 module_start(SceSize args, void *argp) {
     return 0;
 }
 
+// Subroutine module_stop - Address 0x00000128
 s32 module_stop(void) {
 	return 0;
 }
